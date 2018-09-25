@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+    "http://struts.apache.org/dtds/struts-2.1.7.dtd">
+<struts>
+	<package name="main" extends="dang-default" namespace="/main">
+		<action name="*" class="com.tarena.dang.action.main.MainAction" method="{0}">
+			<interceptor-ref name="transactionStack"/>
+			<result name="success">/main/main.jsp</result>
+			<result name="new">/main/new.jsp</result>
+			<result name="recommend">/main/recommend.jsp</result>
+			<result name="hot">/main/hot.jsp</result>
+			<result name="saled" type="json">
+				<param name="root">pros</param>
+			</result>
+		</action>
+		<action name="findcategory" class="com.tarena.dang.action.main.CategoryAction">
+			<result name="success">/main/category.jsp</result>
+		</action>
+		<action name="booklist" class="com.tarena.dang.action.main.BooklistAction">
+			<result name="success">/main/book_list.jsp</result>
+		</action>
+	</package>
+</struts>

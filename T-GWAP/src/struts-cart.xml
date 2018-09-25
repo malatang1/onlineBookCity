@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+    "http://struts.apache.org/dtds/struts-2.1.7.dtd">
+<struts>
+	<package name="cart" extends="dang-default" namespace="/cart">
+	<action name="*" class="com.tarena.dang.action.cart.CartAction" method="{0}">
+			<interceptor-ref name="transactionStack"/>
+			<interceptor-ref name="checklogin"/>
+			<result name="buypros">/cart/buypros.jsp</result>
+			<result name="update">/cart/cart_list.jsp</result>
+			<result name="delete">/cart/cart_list.jsp</result>
+			<result name="deletepros">/cart/deletepros.jsp</result>
+			<result name="recover">/cart/cart_list.jsp</result>
+			<result name="message">/order/message.jsp</result>
+			<result name="login">../user/login_form.jsp</result>
+	</action>
+	<action name="buy" class="com.tarena.dang.action.cart.CartAction" method="buy">
+		<interceptor-ref name="transactionStack"/>
+		<result name="buy" type="json">
+				<param name="root">ok</param>
+		</result>
+	</action>
+	<action name="cart_list">
+		<interceptor-ref name="transactionStack"/>
+		<interceptor-ref name="checklogin"/>
+		<result>/cart/cart_list.jsp</result>
+		<result name="login">/user/login_form.jsp</result>
+	</action>
+	</package>
+</struts>
